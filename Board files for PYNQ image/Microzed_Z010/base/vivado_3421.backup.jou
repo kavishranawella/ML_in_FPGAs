@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Wed Dec 23 19:29:18 2020
+# Process ID: 3421
+# Current directory: /home/kavish/Projects/PYNQ/Pynq/boards/Microzed_Z010/base
+# Command line: vivado -mode batch -source build_base_dsa.tcl -notrace
+# Log file: /home/kavish/Projects/PYNQ/Pynq/boards/Microzed_Z010/base/vivado.log
+# Journal file: /home/kavish/Projects/PYNQ/Pynq/boards/Microzed_Z010/base/vivado.jou
+#-----------------------------------------------------------
+source build_base_dsa.tcl -notrace

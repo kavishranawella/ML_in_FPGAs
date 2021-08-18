@@ -1,0 +1,43 @@
+INFO: [SIM 2] *************** CSIM start ***************
+INFO: [SIM 4] CSIM will launch GCC as the compiler.
+   Compiling ../../../../nnet.cpp in debug mode
+   Generating csim.exe
+
+
+
+
+Checking FC Layer 3 ...
+Calculated int value = 3.426756 
+Real int value = 3.379814 
+ 
+Calculated int value = -0.704128 
+Real int value = -0.704128 
+ 
+Calculated int value = 0.469419 
+Real int value = 0.469419 
+ 
+Calculated int value = -1.126605 
+Real int value = -1.126605 
+ 
+Calculated int value = 0.704128 
+Real int value = 0.704128 
+ 
+Calculated int value = 0.751070 
+Real int value = 0.751070 
+ 
+Calculated int value = 4.928895 
+Real int value = 4.928895 
+ 
+Calculated int value = -2.440977 
+Real int value = -2.440977 
+ 
+Calculated int value = 0.046942 
+Real int value = 0.000000 
+ 
+Calculated int value = -1.736849 
+Real int value = -1.736849 
+ 
+DONE: 10 out of 10 are correct
+
+INFO: [SIM 1] CSim done with 0 errors.
+INFO: [SIM 3] *************** CSIM finish ***************

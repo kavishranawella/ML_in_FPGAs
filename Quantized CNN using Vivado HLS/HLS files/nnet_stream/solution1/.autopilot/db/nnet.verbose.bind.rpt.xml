@@ -1,0 +1,53 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'nnet'" level="0">
+<item name = "Date">Sun Feb 21 01:45:02 2021
+</item>
+<item name = "Version">2018.2 (Build 2258646 on Thu Jun 14 20:25:20 MDT 2018)</item>
+<item name = "Project">nnet_stream</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z010clg400-1</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">13.00, 13.982, 1.62</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">413538, 420266, 413537, 420265, dataflow</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+<column name="grp_pool_layer1_fu_684">pool_layer1, 6728, 6728, 6728, 6728, none</column>
+<column name="grp_pool_layer2_fu_690">pool_layer2, 2705, 2705, 2705, 2705, none</column>
+<column name="grp_conv_layer2_fu_696">conv_layer2, 5789, 8155, 5789, 8155, none</column>
+<column name="grp_conv_layer1_fu_966">conv_layer1, 413536, 420264, 413536, 420264, none</column>
+<column name="grp_fc_layer1_fu_1180">fc_layer1, 70873, 70873, 70873, 70873, none</column>
+<column name="grp_fc_layer2_fu_1190">fc_layer2, 10741, 10741, 10741, 10741, none</column>
+<column name="grp_fc_layer3_fu_1200">fc_layer3, 1235, 1235, 1235, 1235, none</column>
+<column name="grp_Loop_1_proc181_fu_1211">Loop_1_proc181, 2113, 2113, 2113, 2113, none</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

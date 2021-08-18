@@ -1,0 +1,169 @@
+
+
+================================================================
+== Vivado HLS Report for 'Loop_1_proc181'
+================================================================
+* Date:           Sun Feb 21 01:39:06 2021
+
+* Version:        2018.2 (Build 2258646 on Thu Jun 14 20:25:20 MDT 2018)
+* Project:        nnet_stream
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z010clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  13.00|     6.888|        1.62|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +------+------+------+------+---------+
+    |   Latency   |   Interval  | Pipeline|
+    |  min |  max |  min |  max |   Type  |
+    +------+------+------+------+---------+
+    |  2113|  2113|  2113|  2113|   none  |
+    +------+------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------+------+------+----------+-----------+-----------+------+----------+
+        |             |   Latency   | Iteration|  Initiation Interval  | Trip |          |
+        |  Loop Name  |  min |  max |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------+------+------+----------+-----------+-----------+------+----------+
+        |- Loop 1     |  2112|  2112|        66|          -|          -|    32|    no    |
+        | + Loop 1.1  |    64|    64|         2|          -|          -|    32|    no    |
+        +-------------+------+------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 4
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / (!exitcond46_i_i)
+3 --> 
+	4  / (!exitcond45_i_i)
+	2  / (exitcond45_i_i)
+4 --> 
+	3  / true
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.76>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecInterface(i8* %image_in_V_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str225, i32 0, i32 0, [1 x i8]* @p_str226, [1 x i8]* @p_str227, [1 x i8]* @p_str228, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str229, [1 x i8]* @p_str230)"   --->   Operation 5 'specinterface' 'empty' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (1.76ns)   --->   "br label %.loopexit"   --->   Operation 6 'br' <Predicate = true> <Delay = 1.76>
+
+State 2 <SV = 1> <Delay = 1.82>
+ST_2 : Operation 7 [1/1] (0.00ns)   --->   "%i_0_i_i = phi i6 [ 0, %newFuncRoot ], [ %i, %.loopexit.loopexit ]"   --->   Operation 7 'phi' 'i_0_i_i' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 8 [1/1] (1.42ns)   --->   "%exitcond46_i_i = icmp eq i6 %i_0_i_i, -32" [nnet.cpp:419]   --->   Operation 8 'icmp' 'exitcond46_i_i' <Predicate = true> <Delay = 1.42> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.42> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 9 [1/1] (0.00ns)   --->   "%empty_625 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 32, i64 32, i64 32)"   --->   Operation 9 'speclooptripcount' 'empty_625' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 10 [1/1] (1.82ns)   --->   "%i = add i6 %i_0_i_i, 1" [nnet.cpp:419]   --->   Operation 10 'add' 'i' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.63> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 11 [1/1] (0.00ns)   --->   "br i1 %exitcond46_i_i, label %nnet_.exit.exitStub, label %.preheader47.preheader.i.i" [nnet.cpp:419]   --->   Operation 11 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 12 [1/1] (0.00ns)   --->   "%tmp = call i11 @_ssdm_op_BitConcatenate.i11.i6.i5(i6 %i_0_i_i, i5 0)" [nnet.cpp:419]   --->   Operation 12 'bitconcatenate' 'tmp' <Predicate = (!exitcond46_i_i)> <Delay = 0.00>
+ST_2 : Operation 13 [1/1] (0.00ns)   --->   "%tmp_141_cast = zext i11 %tmp to i12" [nnet.cpp:420]   --->   Operation 13 'zext' 'tmp_141_cast' <Predicate = (!exitcond46_i_i)> <Delay = 0.00>
+ST_2 : Operation 14 [1/1] (1.76ns)   --->   "br label %.preheader47.i.i" [nnet.cpp:420]   --->   Operation 14 'br' <Predicate = (!exitcond46_i_i)> <Delay = 1.76>
+ST_2 : Operation 15 [1/1] (0.00ns)   --->   "ret void"   --->   Operation 15 'ret' <Predicate = (exitcond46_i_i)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 4.89>
+ST_3 : Operation 16 [1/1] (0.00ns)   --->   "%j_0_i_i = phi i6 [ %j, %.preheader.preheader.i.i ], [ 0, %.preheader47.preheader.i.i ]"   --->   Operation 16 'phi' 'j_0_i_i' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 17 [1/1] (1.42ns)   --->   "%exitcond45_i_i = icmp eq i6 %j_0_i_i, -32" [nnet.cpp:420]   --->   Operation 17 'icmp' 'exitcond45_i_i' <Predicate = true> <Delay = 1.42> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.42> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 18 [1/1] (0.00ns)   --->   "%empty_626 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 32, i64 32, i64 32)"   --->   Operation 18 'speclooptripcount' 'empty_626' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 19 [1/1] (1.82ns)   --->   "%j = add i6 %j_0_i_i, 1" [nnet.cpp:420]   --->   Operation 19 'add' 'j' <Predicate = true> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.63> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 20 [1/1] (0.00ns)   --->   "br i1 %exitcond45_i_i, label %.loopexit.loopexit, label %.preheader.preheader.i.i" [nnet.cpp:420]   --->   Operation 20 'br' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 21 [1/1] (0.00ns)   --->   "%tmp_i_cast = zext i6 %j_0_i_i to i12" [nnet.cpp:422]   --->   Operation 21 'zext' 'tmp_i_cast' <Predicate = (!exitcond45_i_i)> <Delay = 0.00>
+ST_3 : Operation 22 [1/1] (1.63ns)   --->   "%tmp_s = add i12 %tmp_141_cast, %tmp_i_cast" [nnet.cpp:422]   --->   Operation 22 'add' 'tmp_s' <Predicate = (!exitcond45_i_i)> <Delay = 1.63> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.63> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 23 [1/1] (0.00ns)   --->   "%tmp_142_cast = zext i12 %tmp_s to i64" [nnet.cpp:422]   --->   Operation 23 'zext' 'tmp_142_cast' <Predicate = (!exitcond45_i_i)> <Delay = 0.00>
+ST_3 : Operation 24 [1/1] (0.00ns)   --->   "%input_activations_V_1 = getelementptr [1024 x i8]* @input_activations_V_s, i64 0, i64 %tmp_142_cast" [nnet.cpp:422]   --->   Operation 24 'getelementptr' 'input_activations_V_1' <Predicate = (!exitcond45_i_i)> <Delay = 0.00>
+ST_3 : Operation 25 [2/2] (3.25ns)   --->   "%tmp_V = load i8* %input_activations_V_1, align 1" [nnet.cpp:422]   --->   Operation 25 'load' 'tmp_V' <Predicate = (!exitcond45_i_i)> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 48 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 1024> <ROM>
+ST_3 : Operation 26 [1/1] (0.00ns)   --->   "br label %.loopexit"   --->   Operation 26 'br' <Predicate = (exitcond45_i_i)> <Delay = 0.00>
+
+State 4 <SV = 3> <Delay = 6.88>
+ST_4 : Operation 27 [1/2] (3.25ns)   --->   "%tmp_V = load i8* %input_activations_V_1, align 1" [nnet.cpp:422]   --->   Operation 27 'load' 'tmp_V' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 48 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 8> <Depth = 1024> <ROM>
+ST_4 : Operation 28 [1/1] (3.63ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i8P(i8* %image_in_V_V, i8 %tmp_V)" [nnet.cpp:422]   --->   Operation 28 'write' <Predicate = true> <Delay = 3.63> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 3.63> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 2> <FIFO>
+ST_4 : Operation 29 [1/1] (0.00ns)   --->   "br label %.preheader47.i.i" [nnet.cpp:420]   --->   Operation 29 'br' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 13ns, clock uncertainty: 1.62ns.
+
+ <State 1>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i') with incoming values : ('i', nnet.cpp:419) [6]  (1.77 ns)
+
+ <State 2>: 1.83ns
+The critical path consists of the following:
+	'phi' operation ('i') with incoming values : ('i', nnet.cpp:419) [6]  (0 ns)
+	'add' operation ('i', nnet.cpp:419) [9]  (1.83 ns)
+
+ <State 3>: 4.89ns
+The critical path consists of the following:
+	'phi' operation ('j') with incoming values : ('j', nnet.cpp:420) [16]  (0 ns)
+	'add' operation ('tmp_s', nnet.cpp:422) [23]  (1.64 ns)
+	'getelementptr' operation ('input_activations_V_1', nnet.cpp:422) [25]  (0 ns)
+	'load' operation ('tmp.V', nnet.cpp:422) on array 'input_activations_V_s' [26]  (3.25 ns)
+
+ <State 4>: 6.89ns
+The critical path consists of the following:
+	'load' operation ('tmp.V', nnet.cpp:422) on array 'input_activations_V_s' [26]  (3.25 ns)
+	fifo write on port 'image_in_V_V' (nnet.cpp:422) [27]  (3.63 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

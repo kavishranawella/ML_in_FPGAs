@@ -1,0 +1,7 @@
+Running: xsim.dir/nnet/xsimk -simmode gui -wdb nnet.wdb -simrunnum 0 -socket 56119
+Design successfully loaded
+Design Loading Memory Usage: 44904 KB (Peak: 44904 KB)
+Design Loading CPU Usage: 20 ms
+Simulation completed
+Simulation Memory Usage: 131088 KB (Peak: 184172 KB)
+Simulation CPU Usage: 15680 ms

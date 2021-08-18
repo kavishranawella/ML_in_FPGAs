@@ -1,0 +1,438 @@
+
+
+================================================================
+== Vivado HLS Report for 'fc_layer1'
+================================================================
+* Date:           Sun Feb 21 01:44:43 2021
+
+* Version:        2018.2 (Build 2258646 on Thu Jun 14 20:25:20 MDT 2018)
+* Project:        nnet_stream
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z010clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  13.00|    13.982|        1.62|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-------+-------+-------+-------+---------+
+    |    Latency    |    Interval   | Pipeline|
+    |  min  |  max  |  min  |  max  |   Type  |
+    +-------+-------+-------+-------+---------+
+    |  70873|  70873|  70873|  70873|   none  |
+    +-------+-------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------------------+-------+-------+----------+-----------+-----------+------+----------+
+        |                      |    Latency    | Iteration|  Initiation Interval  | Trip |          |
+        |       Loop Name      |  min  |  max  |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------------------+-------+-------+----------+-----------+-----------+------+----------+
+        |- Loop 1              |    240|    240|         2|          -|          -|   120|    no    |
+        |- fc_layer1_label12   |  70150|  70150|       122|          -|          -|   575|    no    |
+        | + fc_layer1_label40  |    120|    120|         4|          -|          -|    30|    no    |
+        |- fc_layer1_label15   |    480|    480|         4|          -|          -|   120|    no    |
+        +----------------------+-------+-------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 12
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / (!exitcond5)
+	4  / (exitcond5)
+3 --> 
+	2  / true
+4 --> 
+	5  / (!exitcond6)
+	9  / (exitcond6)
+5 --> 
+	6  / (!exitcond2)
+	4  / (exitcond2)
+6 --> 
+	7  / true
+7 --> 
+	8  / true
+8 --> 
+	5  / true
+9 --> 
+	10  / (!exitcond)
+10 --> 
+	11  / true
+11 --> 
+	12  / true
+12 --> 
+	9  / true
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 5.54>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecInterface(i8* %out_V_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str211, i32 0, i32 0, [1 x i8]* @p_str212, [1 x i8]* @p_str213, [1 x i8]* @p_str214, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str215, [1 x i8]* @p_str216)"   --->   Operation 13 'specinterface' 'empty' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%empty_519 = call i32 (...)* @_ssdm_op_SpecInterface(i8* %in_V_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str204, i32 0, i32 0, [1 x i8]* @p_str205, [1 x i8]* @p_str206, [1 x i8]* @p_str207, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str208, [1 x i8]* @p_str209)"   --->   Operation 14 'specinterface' 'empty_519' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%output_V = alloca [120 x i24], align 4" [nnet.cpp:327]   --->   Operation 15 'alloca' 'output_V' <Predicate = true> <Delay = 0.00> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 24> <Depth = 120> <RAM>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%output_V_addr = getelementptr [120 x i24]* %output_V, i64 0, i64 0" [nnet.cpp:327]   --->   Operation 16 'getelementptr' 'output_V_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (3.25ns)   --->   "store i24 0, i24* %output_V_addr, align 16" [nnet.cpp:327]   --->   Operation 17 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 24> <Depth = 120> <RAM>
+ST_1 : Operation 18 [1/1] (3.63ns)   --->   "%tmp_V_956 = call i8 @_ssdm_op_Read.ap_fifo.volatile.i8P(i8* %in_V_V)" [nnet.cpp:333]   --->   Operation 18 'read' 'tmp_V_956' <Predicate = true> <Delay = 3.63> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 3.63> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 2> <FIFO>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%lhs_V = sext i8 %tmp_V_956 to i9" [nnet.cpp:334]   --->   Operation 19 'sext' 'lhs_V' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (1.91ns)   --->   "%r_V = add i9 %lhs_V, 2" [nnet.cpp:334]   --->   Operation 20 'add' 'r_V' <Predicate = true> <Delay = 1.91> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%read_temp_V_cast = sext i9 %r_V to i17" [nnet.cpp:334]   --->   Operation 21 'sext' 'read_temp_V_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (1.76ns)   --->   "br label %0" [nnet.cpp:335]   --->   Operation 22 'br' <Predicate = true> <Delay = 1.76>
+
+State 2 <SV = 1> <Delay = 5.33>
+ST_2 : Operation 23 [1/1] (0.00ns)   --->   "%i = phi i7 [ 0, %arrayctor.loop.preheader ], [ %i_6, %1 ]"   --->   Operation 23 'phi' 'i' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 24 [1/1] (1.48ns)   --->   "%exitcond5 = icmp eq i7 %i, -8" [nnet.cpp:335]   --->   Operation 24 'icmp' 'exitcond5' <Predicate = true> <Delay = 1.48> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.42> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%empty_520 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 120, i64 120, i64 120)"   --->   Operation 25 'speclooptripcount' 'empty_520' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 26 [1/1] (1.87ns)   --->   "%i_6 = add i7 %i, 1" [nnet.cpp:335]   --->   Operation 26 'add' 'i_6' <Predicate = true> <Delay = 1.87> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "br i1 %exitcond5, label %.preheader349.preheader, label %1" [nnet.cpp:335]   --->   Operation 27 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%tmp_37 = call i16 @_ssdm_op_BitConcatenate.i16.i7.i9(i7 %i, i9 0)" [nnet.cpp:335]   --->   Operation 28 'bitconcatenate' 'tmp_37' <Predicate = (!exitcond5)> <Delay = 0.00>
+ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%p_shl_cast = zext i16 %tmp_37 to i17" [nnet.cpp:335]   --->   Operation 29 'zext' 'p_shl_cast' <Predicate = (!exitcond5)> <Delay = 0.00>
+ST_2 : Operation 30 [1/1] (0.00ns)   --->   "%tmp_38 = call i13 @_ssdm_op_BitConcatenate.i13.i7.i6(i7 %i, i6 0)" [nnet.cpp:335]   --->   Operation 30 'bitconcatenate' 'tmp_38' <Predicate = (!exitcond5)> <Delay = 0.00>
+ST_2 : Operation 31 [1/1] (0.00ns)   --->   "%p_shl1_cast = zext i13 %tmp_38 to i17" [nnet.cpp:336]   --->   Operation 31 'zext' 'p_shl1_cast' <Predicate = (!exitcond5)> <Delay = 0.00>
+ST_2 : Operation 32 [1/1] (2.07ns)   --->   "%tmp_39 = add i17 %p_shl1_cast, %p_shl_cast" [nnet.cpp:336]   --->   Operation 32 'add' 'tmp_39' <Predicate = (!exitcond5)> <Delay = 2.07> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 33 [1/1] (0.00ns)   --->   "%tmp_40_cast = zext i17 %tmp_39 to i64" [nnet.cpp:336]   --->   Operation 33 'zext' 'tmp_40_cast' <Predicate = (!exitcond5)> <Delay = 0.00>
+ST_2 : Operation 34 [1/1] (0.00ns)   --->   "%fc_layer1_weights_V_s = getelementptr [69120 x i8]* @fc_layer1_weights_V, i64 0, i64 %tmp_40_cast" [nnet.cpp:336]   --->   Operation 34 'getelementptr' 'fc_layer1_weights_V_s' <Predicate = (!exitcond5)> <Delay = 0.00>
+ST_2 : Operation 35 [2/2] (3.25ns)   --->   "%fc_layer1_weights_V_1 = load i8* %fc_layer1_weights_V_s, align 16" [nnet.cpp:336]   --->   Operation 35 'load' 'fc_layer1_weights_V_1' <Predicate = (!exitcond5)> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 48 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 10> <Depth = 120> <ROM>
+ST_2 : Operation 36 [1/1] (1.76ns)   --->   "br label %.preheader349" [nnet.cpp:338]   --->   Operation 36 'br' <Predicate = (exitcond5)> <Delay = 1.76>
+
+State 3 <SV = 2> <Delay = 10.8>
+ST_3 : Operation 37 [1/1] (0.00ns)   --->   "%tmp_s = zext i7 %i to i64" [nnet.cpp:336]   --->   Operation 37 'zext' 'tmp_s' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 38 [1/2] (3.25ns)   --->   "%fc_layer1_weights_V_1 = load i8* %fc_layer1_weights_V_s, align 16" [nnet.cpp:336]   --->   Operation 38 'load' 'fc_layer1_weights_V_1' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 48 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 10> <Depth = 120> <ROM>
+ST_3 : Operation 39 [1/1] (0.00ns)   --->   "%p_cast = sext i8 %fc_layer1_weights_V_1 to i17" [nnet.cpp:336]   --->   Operation 39 'sext' 'p_cast' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 40 [1/1] (4.35ns)   --->   "%p_9 = mul i17 %p_cast, %read_temp_V_cast" [nnet.cpp:336]   --->   Operation 40 'mul' 'p_9' <Predicate = true> <Delay = 4.35> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 6.54> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 41 [1/1] (0.00ns)   --->   "%p_9_cast = sext i17 %p_9 to i24" [nnet.cpp:336]   --->   Operation 41 'sext' 'p_9_cast' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 42 [1/1] (0.00ns)   --->   "%output_V_addr_7 = getelementptr [120 x i24]* %output_V, i64 0, i64 %tmp_s" [nnet.cpp:336]   --->   Operation 42 'getelementptr' 'output_V_addr_7' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 43 [1/1] (3.25ns)   --->   "store i24 %p_9_cast, i24* %output_V_addr_7, align 4" [nnet.cpp:336]   --->   Operation 43 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 24> <Depth = 120> <RAM>
+ST_3 : Operation 44 [1/1] (0.00ns)   --->   "br label %0" [nnet.cpp:335]   --->   Operation 44 'br' <Predicate = true> <Delay = 0.00>
+
+State 4 <SV = 2> <Delay = 5.54>
+ST_4 : Operation 45 [1/1] (0.00ns)   --->   "%j = phi i10 [ %j_3, %5 ], [ 1, %.preheader349.preheader ]"   --->   Operation 45 'phi' 'j' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 46 [1/1] (1.77ns)   --->   "%exitcond6 = icmp eq i10 %j, -448" [nnet.cpp:338]   --->   Operation 46 'icmp' 'exitcond6' <Predicate = true> <Delay = 1.77> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.42> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 47 [1/1] (0.00ns)   --->   "%empty_521 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 575, i64 575, i64 575)"   --->   Operation 47 'speclooptripcount' 'empty_521' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 48 [1/1] (0.00ns)   --->   "br i1 %exitcond6, label %.preheader.preheader, label %2" [nnet.cpp:338]   --->   Operation 48 'br' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 49 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([18 x i8]* @p_str68) nounwind" [nnet.cpp:338]   --->   Operation 49 'specloopname' <Predicate = (!exitcond6)> <Delay = 0.00>
+ST_4 : Operation 50 [1/1] (0.00ns)   --->   "%tmp = call i32 (...)* @_ssdm_op_SpecRegionBegin([18 x i8]* @p_str68)" [nnet.cpp:338]   --->   Operation 50 'specregionbegin' 'tmp' <Predicate = (!exitcond6)> <Delay = 0.00>
+ST_4 : Operation 51 [1/1] (3.63ns)   --->   "%tmp_V_957 = call i8 @_ssdm_op_Read.ap_fifo.volatile.i8P(i8* %in_V_V)" [nnet.cpp:339]   --->   Operation 51 'read' 'tmp_V_957' <Predicate = (!exitcond6)> <Delay = 3.63> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 3.63> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 2> <FIFO>
+ST_4 : Operation 52 [1/1] (0.00ns)   --->   "%lhs_V_3 = sext i8 %tmp_V_957 to i9" [nnet.cpp:340]   --->   Operation 52 'sext' 'lhs_V_3' <Predicate = (!exitcond6)> <Delay = 0.00>
+ST_4 : Operation 53 [1/1] (1.91ns)   --->   "%r_V_5 = add i9 %lhs_V_3, 2" [nnet.cpp:340]   --->   Operation 53 'add' 'r_V_5' <Predicate = (!exitcond6)> <Delay = 1.91> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 54 [1/1] (0.00ns)   --->   "%tmp_4_cast = zext i10 %j to i17" [nnet.cpp:341]   --->   Operation 54 'zext' 'tmp_4_cast' <Predicate = (!exitcond6)> <Delay = 0.00>
+ST_4 : Operation 55 [1/1] (0.00ns)   --->   "%p_1_cast = sext i9 %r_V_5 to i17" [nnet.cpp:341]   --->   Operation 55 'sext' 'p_1_cast' <Predicate = (!exitcond6)> <Delay = 0.00>
+ST_4 : Operation 56 [1/1] (1.76ns)   --->   "br label %3" [nnet.cpp:341]   --->   Operation 56 'br' <Predicate = (!exitcond6)> <Delay = 1.76>
+ST_4 : Operation 57 [1/1] (1.76ns)   --->   "br label %.preheader" [nnet.cpp:345]   --->   Operation 57 'br' <Predicate = (exitcond6)> <Delay = 1.76>
+
+State 5 <SV = 3> <Delay = 7.18>
+ST_5 : Operation 58 [1/1] (0.00ns)   --->   "%i1 = phi i7 [ 0, %2 ], [ %i_10_3, %4 ]" [nnet.cpp:341]   --->   Operation 58 'phi' 'i1' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 59 [1/1] (0.00ns)   --->   "%empty_522 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 30, i64 30, i64 30)"   --->   Operation 59 'speclooptripcount' 'empty_522' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 60 [1/1] (1.48ns)   --->   "%exitcond2 = icmp eq i7 %i1, -8" [nnet.cpp:341]   --->   Operation 60 'icmp' 'exitcond2' <Predicate = true> <Delay = 1.48> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.42> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 61 [1/1] (0.00ns)   --->   "br i1 %exitcond2, label %5, label %4" [nnet.cpp:341]   --->   Operation 61 'br' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 62 [1/1] (0.00ns)   --->   "%tmp_8 = zext i7 %i1 to i64" [nnet.cpp:342]   --->   Operation 62 'zext' 'tmp_8' <Predicate = (!exitcond2)> <Delay = 0.00>
+ST_5 : Operation 63 [1/1] (0.00ns)   --->   "%tmp_40 = call i16 @_ssdm_op_BitConcatenate.i16.i7.i9(i7 %i1, i9 0)" [nnet.cpp:341]   --->   Operation 63 'bitconcatenate' 'tmp_40' <Predicate = (!exitcond2)> <Delay = 0.00>
+ST_5 : Operation 64 [1/1] (0.00ns)   --->   "%p_shl8_cast = zext i16 %tmp_40 to i17" [nnet.cpp:341]   --->   Operation 64 'zext' 'p_shl8_cast' <Predicate = (!exitcond2)> <Delay = 0.00>
+ST_5 : Operation 65 [1/1] (0.00ns)   --->   "%tmp_41 = call i13 @_ssdm_op_BitConcatenate.i13.i7.i6(i7 %i1, i6 0)" [nnet.cpp:341]   --->   Operation 65 'bitconcatenate' 'tmp_41' <Predicate = (!exitcond2)> <Delay = 0.00>
+ST_5 : Operation 66 [1/1] (0.00ns)   --->   "%p_shl9_cast = zext i13 %tmp_41 to i17" [nnet.cpp:342]   --->   Operation 66 'zext' 'p_shl9_cast' <Predicate = (!exitcond2)> <Delay = 0.00>
+ST_5 : Operation 67 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%tmp_42 = add i17 %p_shl9_cast, %p_shl8_cast" [nnet.cpp:342]   --->   Operation 67 'add' 'tmp_42' <Predicate = (!exitcond2)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 80 'TAddSub' <Latency = 0> <II = 1> <Delay = 1.96> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 68 [1/1] (3.93ns) (root node of TernaryAdder)   --->   "%tmp_43 = add i17 %tmp_42, %tmp_4_cast" [nnet.cpp:342]   --->   Operation 68 'add' 'tmp_43' <Predicate = (!exitcond2)> <Delay = 3.93> <Core = "TAddSub">   --->   Core 80 'TAddSub' <Latency = 0> <II = 1> <Delay = 1.96> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 69 [1/1] (0.00ns)   --->   "%tmp_44_cast = zext i17 %tmp_43 to i64" [nnet.cpp:342]   --->   Operation 69 'zext' 'tmp_44_cast' <Predicate = (!exitcond2)> <Delay = 0.00>
+ST_5 : Operation 70 [1/1] (0.00ns)   --->   "%fc_layer1_weights_V_2 = getelementptr [69120 x i8]* @fc_layer1_weights_V, i64 0, i64 %tmp_44_cast" [nnet.cpp:342]   --->   Operation 70 'getelementptr' 'fc_layer1_weights_V_2' <Predicate = (!exitcond2)> <Delay = 0.00>
+ST_5 : Operation 71 [2/2] (3.25ns)   --->   "%fc_layer1_weights_V_3 = load i8* %fc_layer1_weights_V_2, align 1" [nnet.cpp:342]   --->   Operation 71 'load' 'fc_layer1_weights_V_3' <Predicate = (!exitcond2)> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 48 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 10> <Depth = 120> <ROM>
+ST_5 : Operation 72 [1/1] (0.00ns)   --->   "%output_V_addr_11 = getelementptr [120 x i24]* %output_V, i64 0, i64 %tmp_8" [nnet.cpp:342]   --->   Operation 72 'getelementptr' 'output_V_addr_11' <Predicate = (!exitcond2)> <Delay = 0.00>
+ST_5 : Operation 73 [2/2] (3.25ns)   --->   "%output_V_load = load i24* %output_V_addr_11, align 4" [nnet.cpp:342]   --->   Operation 73 'load' 'output_V_load' <Predicate = (!exitcond2)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 24> <Depth = 120> <RAM>
+ST_5 : Operation 74 [1/1] (0.00ns)   --->   "%i_10_s = or i7 %i1, 1" [nnet.cpp:341]   --->   Operation 74 'or' 'i_10_s' <Predicate = (!exitcond2)> <Delay = 0.00>
+ST_5 : Operation 75 [1/1] (0.00ns)   --->   "%tmp_103_1 = zext i7 %i_10_s to i64" [nnet.cpp:342]   --->   Operation 75 'zext' 'tmp_103_1' <Predicate = (!exitcond2)> <Delay = 0.00>
+ST_5 : Operation 76 [1/1] (0.00ns)   --->   "%tmp_44 = call i16 @_ssdm_op_BitConcatenate.i16.i7.i9(i7 %i_10_s, i9 0)" [nnet.cpp:341]   --->   Operation 76 'bitconcatenate' 'tmp_44' <Predicate = (!exitcond2)> <Delay = 0.00>
+ST_5 : Operation 77 [1/1] (0.00ns)   --->   "%p_shl6_cast = zext i16 %tmp_44 to i17" [nnet.cpp:341]   --->   Operation 77 'zext' 'p_shl6_cast' <Predicate = (!exitcond2)> <Delay = 0.00>
+ST_5 : Operation 78 [1/1] (0.00ns)   --->   "%tmp_45 = call i13 @_ssdm_op_BitConcatenate.i13.i7.i6(i7 %i_10_s, i6 0)" [nnet.cpp:341]   --->   Operation 78 'bitconcatenate' 'tmp_45' <Predicate = (!exitcond2)> <Delay = 0.00>
+ST_5 : Operation 79 [1/1] (0.00ns)   --->   "%p_shl7_cast = zext i13 %tmp_45 to i17" [nnet.cpp:342]   --->   Operation 79 'zext' 'p_shl7_cast' <Predicate = (!exitcond2)> <Delay = 0.00>
+ST_5 : Operation 80 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%tmp_46 = add i17 %p_shl7_cast, %p_shl6_cast" [nnet.cpp:342]   --->   Operation 80 'add' 'tmp_46' <Predicate = (!exitcond2)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 80 'TAddSub' <Latency = 0> <II = 1> <Delay = 1.96> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 81 [1/1] (3.93ns) (root node of TernaryAdder)   --->   "%tmp_47 = add i17 %tmp_46, %tmp_4_cast" [nnet.cpp:342]   --->   Operation 81 'add' 'tmp_47' <Predicate = (!exitcond2)> <Delay = 3.93> <Core = "TAddSub">   --->   Core 80 'TAddSub' <Latency = 0> <II = 1> <Delay = 1.96> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 82 [1/1] (0.00ns)   --->   "%tmp_48_cast = zext i17 %tmp_47 to i64" [nnet.cpp:342]   --->   Operation 82 'zext' 'tmp_48_cast' <Predicate = (!exitcond2)> <Delay = 0.00>
+ST_5 : Operation 83 [1/1] (0.00ns)   --->   "%fc_layer1_weights_V_4 = getelementptr [69120 x i8]* @fc_layer1_weights_V, i64 0, i64 %tmp_48_cast" [nnet.cpp:342]   --->   Operation 83 'getelementptr' 'fc_layer1_weights_V_4' <Predicate = (!exitcond2)> <Delay = 0.00>
+ST_5 : Operation 84 [2/2] (3.25ns)   --->   "%fc_layer1_weights_V_5 = load i8* %fc_layer1_weights_V_4, align 1" [nnet.cpp:342]   --->   Operation 84 'load' 'fc_layer1_weights_V_5' <Predicate = (!exitcond2)> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 48 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 10> <Depth = 120> <ROM>
+ST_5 : Operation 85 [1/1] (0.00ns)   --->   "%output_V_addr_12 = getelementptr [120 x i24]* %output_V, i64 0, i64 %tmp_103_1" [nnet.cpp:342]   --->   Operation 85 'getelementptr' 'output_V_addr_12' <Predicate = (!exitcond2)> <Delay = 0.00>
+ST_5 : Operation 86 [2/2] (3.25ns)   --->   "%output_V_load_1 = load i24* %output_V_addr_12, align 4" [nnet.cpp:342]   --->   Operation 86 'load' 'output_V_load_1' <Predicate = (!exitcond2)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 24> <Depth = 120> <RAM>
+ST_5 : Operation 87 [1/1] (0.00ns)   --->   "%empty_523 = call i32 (...)* @_ssdm_op_SpecRegionEnd([18 x i8]* @p_str68, i32 %tmp)" [nnet.cpp:344]   --->   Operation 87 'specregionend' 'empty_523' <Predicate = (exitcond2)> <Delay = 0.00>
+ST_5 : Operation 88 [1/1] (1.73ns)   --->   "%j_3 = add i10 %j, 1" [nnet.cpp:338]   --->   Operation 88 'add' 'j_3' <Predicate = (exitcond2)> <Delay = 1.73> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 89 [1/1] (0.00ns)   --->   "br label %.preheader349" [nnet.cpp:338]   --->   Operation 89 'br' <Predicate = (exitcond2)> <Delay = 0.00>
+
+State 6 <SV = 4> <Delay = 9.63>
+ST_6 : Operation 90 [1/2] (3.25ns)   --->   "%fc_layer1_weights_V_3 = load i8* %fc_layer1_weights_V_2, align 1" [nnet.cpp:342]   --->   Operation 90 'load' 'fc_layer1_weights_V_3' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 48 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 10> <Depth = 120> <ROM>
+ST_6 : Operation 91 [1/1] (0.00ns)   --->   "%p_11_cast = sext i8 %fc_layer1_weights_V_3 to i17" [nnet.cpp:342]   --->   Operation 91 'sext' 'p_11_cast' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 92 [1/1] (3.36ns)   --->   "%p_s = mul i17 %p_11_cast, %p_1_cast" [nnet.cpp:342]   --->   Operation 92 'mul' 'p_s' <Predicate = true> <Delay = 3.36> <Core = "DSP48">   --->   Core 61 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 93 [1/1] (0.00ns)   --->   "%p_12_cast = sext i17 %p_s to i24" [nnet.cpp:342]   --->   Operation 93 'sext' 'p_12_cast' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 94 [1/2] (3.25ns)   --->   "%output_V_load = load i24* %output_V_addr_11, align 4" [nnet.cpp:342]   --->   Operation 94 'load' 'output_V_load' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 24> <Depth = 120> <RAM>
+ST_6 : Operation 95 [1/1] (3.02ns)   --->   "%tmp_9 = add i24 %p_12_cast, %output_V_load" [nnet.cpp:342]   --->   Operation 95 'add' 'tmp_9' <Predicate = true> <Delay = 3.02> <Core = "DSP48">   --->   Core 61 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 96 [1/2] (3.25ns)   --->   "%fc_layer1_weights_V_5 = load i8* %fc_layer1_weights_V_4, align 1" [nnet.cpp:342]   --->   Operation 96 'load' 'fc_layer1_weights_V_5' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 48 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 10> <Depth = 120> <ROM>
+ST_6 : Operation 97 [1/1] (0.00ns)   --->   "%p_11_1_cast = sext i8 %fc_layer1_weights_V_5 to i17" [nnet.cpp:342]   --->   Operation 97 'sext' 'p_11_1_cast' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 98 [1/1] (3.36ns)   --->   "%p_12_1 = mul i17 %p_11_1_cast, %p_1_cast" [nnet.cpp:342]   --->   Operation 98 'mul' 'p_12_1' <Predicate = true> <Delay = 3.36> <Core = "DSP48">   --->   Core 61 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 99 [1/1] (0.00ns)   --->   "%p_12_1_cast = sext i17 %p_12_1 to i24" [nnet.cpp:342]   --->   Operation 99 'sext' 'p_12_1_cast' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 100 [1/2] (3.25ns)   --->   "%output_V_load_1 = load i24* %output_V_addr_12, align 4" [nnet.cpp:342]   --->   Operation 100 'load' 'output_V_load_1' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 24> <Depth = 120> <RAM>
+ST_6 : Operation 101 [1/1] (3.02ns)   --->   "%tmp_104_1 = add i24 %p_12_1_cast, %output_V_load_1" [nnet.cpp:342]   --->   Operation 101 'add' 'tmp_104_1' <Predicate = true> <Delay = 3.02> <Core = "DSP48">   --->   Core 61 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 102 [1/1] (0.00ns)   --->   "%i_10_1 = or i7 %i1, 2" [nnet.cpp:341]   --->   Operation 102 'or' 'i_10_1' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 103 [1/1] (0.00ns)   --->   "%tmp_103_2 = zext i7 %i_10_1 to i64" [nnet.cpp:342]   --->   Operation 103 'zext' 'tmp_103_2' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 104 [1/1] (0.00ns)   --->   "%tmp_48 = call i16 @_ssdm_op_BitConcatenate.i16.i7.i9(i7 %i_10_1, i9 0)" [nnet.cpp:341]   --->   Operation 104 'bitconcatenate' 'tmp_48' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 105 [1/1] (0.00ns)   --->   "%p_shl4_cast = zext i16 %tmp_48 to i17" [nnet.cpp:341]   --->   Operation 105 'zext' 'p_shl4_cast' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 106 [1/1] (0.00ns)   --->   "%tmp_49 = call i13 @_ssdm_op_BitConcatenate.i13.i7.i6(i7 %i_10_1, i6 0)" [nnet.cpp:341]   --->   Operation 106 'bitconcatenate' 'tmp_49' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 107 [1/1] (0.00ns)   --->   "%p_shl5_cast = zext i13 %tmp_49 to i17" [nnet.cpp:342]   --->   Operation 107 'zext' 'p_shl5_cast' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 108 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%tmp_50 = add i17 %p_shl5_cast, %p_shl4_cast" [nnet.cpp:342]   --->   Operation 108 'add' 'tmp_50' <Predicate = true> <Delay = 0.00> <Core = "TAddSub">   --->   Core 80 'TAddSub' <Latency = 0> <II = 1> <Delay = 1.96> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 109 [1/1] (3.93ns) (root node of TernaryAdder)   --->   "%tmp_51 = add i17 %tmp_50, %tmp_4_cast" [nnet.cpp:342]   --->   Operation 109 'add' 'tmp_51' <Predicate = true> <Delay = 3.93> <Core = "TAddSub">   --->   Core 80 'TAddSub' <Latency = 0> <II = 1> <Delay = 1.96> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 110 [1/1] (0.00ns)   --->   "%tmp_52_cast = zext i17 %tmp_51 to i64" [nnet.cpp:342]   --->   Operation 110 'zext' 'tmp_52_cast' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 111 [1/1] (0.00ns)   --->   "%fc_layer1_weights_V_6 = getelementptr [69120 x i8]* @fc_layer1_weights_V, i64 0, i64 %tmp_52_cast" [nnet.cpp:342]   --->   Operation 111 'getelementptr' 'fc_layer1_weights_V_6' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 112 [2/2] (3.25ns)   --->   "%fc_layer1_weights_V_7 = load i8* %fc_layer1_weights_V_6, align 1" [nnet.cpp:342]   --->   Operation 112 'load' 'fc_layer1_weights_V_7' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 48 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 10> <Depth = 120> <ROM>
+ST_6 : Operation 113 [1/1] (0.00ns)   --->   "%output_V_addr_13 = getelementptr [120 x i24]* %output_V, i64 0, i64 %tmp_103_2" [nnet.cpp:342]   --->   Operation 113 'getelementptr' 'output_V_addr_13' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 114 [2/2] (3.25ns)   --->   "%output_V_load_2 = load i24* %output_V_addr_13, align 4" [nnet.cpp:342]   --->   Operation 114 'load' 'output_V_load_2' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 24> <Depth = 120> <RAM>
+ST_6 : Operation 115 [1/1] (0.00ns)   --->   "%i_10_2 = or i7 %i1, 3" [nnet.cpp:341]   --->   Operation 115 'or' 'i_10_2' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 116 [1/1] (0.00ns)   --->   "%tmp_103_3 = zext i7 %i_10_2 to i64" [nnet.cpp:342]   --->   Operation 116 'zext' 'tmp_103_3' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 117 [1/1] (0.00ns)   --->   "%tmp_52 = call i16 @_ssdm_op_BitConcatenate.i16.i7.i9(i7 %i_10_2, i9 0)" [nnet.cpp:341]   --->   Operation 117 'bitconcatenate' 'tmp_52' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 118 [1/1] (0.00ns)   --->   "%p_shl2_cast = zext i16 %tmp_52 to i17" [nnet.cpp:341]   --->   Operation 118 'zext' 'p_shl2_cast' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 119 [1/1] (0.00ns)   --->   "%tmp_53 = call i13 @_ssdm_op_BitConcatenate.i13.i7.i6(i7 %i_10_2, i6 0)" [nnet.cpp:341]   --->   Operation 119 'bitconcatenate' 'tmp_53' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 120 [1/1] (0.00ns)   --->   "%p_shl3_cast = zext i13 %tmp_53 to i17" [nnet.cpp:342]   --->   Operation 120 'zext' 'p_shl3_cast' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 121 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%tmp_54 = add i17 %p_shl3_cast, %p_shl2_cast" [nnet.cpp:342]   --->   Operation 121 'add' 'tmp_54' <Predicate = true> <Delay = 0.00> <Core = "TAddSub">   --->   Core 80 'TAddSub' <Latency = 0> <II = 1> <Delay = 1.96> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 122 [1/1] (3.93ns) (root node of TernaryAdder)   --->   "%tmp_55 = add i17 %tmp_54, %tmp_4_cast" [nnet.cpp:342]   --->   Operation 122 'add' 'tmp_55' <Predicate = true> <Delay = 3.93> <Core = "TAddSub">   --->   Core 80 'TAddSub' <Latency = 0> <II = 1> <Delay = 1.96> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 123 [1/1] (0.00ns)   --->   "%tmp_56_cast = zext i17 %tmp_55 to i64" [nnet.cpp:342]   --->   Operation 123 'zext' 'tmp_56_cast' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 124 [1/1] (0.00ns)   --->   "%fc_layer1_weights_V_8 = getelementptr [69120 x i8]* @fc_layer1_weights_V, i64 0, i64 %tmp_56_cast" [nnet.cpp:342]   --->   Operation 124 'getelementptr' 'fc_layer1_weights_V_8' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 125 [2/2] (3.25ns)   --->   "%fc_layer1_weights_V_9 = load i8* %fc_layer1_weights_V_8, align 1" [nnet.cpp:342]   --->   Operation 125 'load' 'fc_layer1_weights_V_9' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 48 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 10> <Depth = 120> <ROM>
+ST_6 : Operation 126 [1/1] (0.00ns)   --->   "%output_V_addr_14 = getelementptr [120 x i24]* %output_V, i64 0, i64 %tmp_103_3" [nnet.cpp:342]   --->   Operation 126 'getelementptr' 'output_V_addr_14' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 127 [2/2] (3.25ns)   --->   "%output_V_load_3 = load i24* %output_V_addr_14, align 4" [nnet.cpp:342]   --->   Operation 127 'load' 'output_V_load_3' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 24> <Depth = 120> <RAM>
+ST_6 : Operation 128 [1/1] (1.87ns)   --->   "%i_10_3 = add i7 %i1, 4" [nnet.cpp:341]   --->   Operation 128 'add' 'i_10_3' <Predicate = true> <Delay = 1.87> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 7 <SV = 5> <Delay = 9.63>
+ST_7 : Operation 129 [1/1] (3.25ns)   --->   "store i24 %tmp_9, i24* %output_V_addr_11, align 4" [nnet.cpp:342]   --->   Operation 129 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 24> <Depth = 120> <RAM>
+ST_7 : Operation 130 [1/1] (3.25ns)   --->   "store i24 %tmp_104_1, i24* %output_V_addr_12, align 4" [nnet.cpp:342]   --->   Operation 130 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 24> <Depth = 120> <RAM>
+ST_7 : Operation 131 [1/2] (3.25ns)   --->   "%fc_layer1_weights_V_7 = load i8* %fc_layer1_weights_V_6, align 1" [nnet.cpp:342]   --->   Operation 131 'load' 'fc_layer1_weights_V_7' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 48 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 10> <Depth = 120> <ROM>
+ST_7 : Operation 132 [1/1] (0.00ns)   --->   "%p_11_2_cast = sext i8 %fc_layer1_weights_V_7 to i17" [nnet.cpp:342]   --->   Operation 132 'sext' 'p_11_2_cast' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 133 [1/1] (3.36ns)   --->   "%p_12_2 = mul i17 %p_11_2_cast, %p_1_cast" [nnet.cpp:342]   --->   Operation 133 'mul' 'p_12_2' <Predicate = true> <Delay = 3.36> <Core = "DSP48">   --->   Core 61 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_7 : Operation 134 [1/1] (0.00ns)   --->   "%p_12_2_cast = sext i17 %p_12_2 to i24" [nnet.cpp:342]   --->   Operation 134 'sext' 'p_12_2_cast' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 135 [1/2] (3.25ns)   --->   "%output_V_load_2 = load i24* %output_V_addr_13, align 4" [nnet.cpp:342]   --->   Operation 135 'load' 'output_V_load_2' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 24> <Depth = 120> <RAM>
+ST_7 : Operation 136 [1/1] (3.02ns)   --->   "%tmp_104_2 = add i24 %p_12_2_cast, %output_V_load_2" [nnet.cpp:342]   --->   Operation 136 'add' 'tmp_104_2' <Predicate = true> <Delay = 3.02> <Core = "DSP48">   --->   Core 61 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_7 : Operation 137 [1/2] (3.25ns)   --->   "%fc_layer1_weights_V_9 = load i8* %fc_layer1_weights_V_8, align 1" [nnet.cpp:342]   --->   Operation 137 'load' 'fc_layer1_weights_V_9' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 48 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 10> <Depth = 120> <ROM>
+ST_7 : Operation 138 [1/1] (0.00ns)   --->   "%p_11_3_cast = sext i8 %fc_layer1_weights_V_9 to i17" [nnet.cpp:342]   --->   Operation 138 'sext' 'p_11_3_cast' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 139 [1/1] (3.36ns)   --->   "%p_12_3 = mul i17 %p_11_3_cast, %p_1_cast" [nnet.cpp:342]   --->   Operation 139 'mul' 'p_12_3' <Predicate = true> <Delay = 3.36> <Core = "DSP48">   --->   Core 61 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_7 : Operation 140 [1/1] (0.00ns)   --->   "%p_12_3_cast = sext i17 %p_12_3 to i24" [nnet.cpp:342]   --->   Operation 140 'sext' 'p_12_3_cast' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 141 [1/2] (3.25ns)   --->   "%output_V_load_3 = load i24* %output_V_addr_14, align 4" [nnet.cpp:342]   --->   Operation 141 'load' 'output_V_load_3' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 24> <Depth = 120> <RAM>
+ST_7 : Operation 142 [1/1] (3.02ns)   --->   "%tmp_104_3 = add i24 %p_12_3_cast, %output_V_load_3" [nnet.cpp:342]   --->   Operation 142 'add' 'tmp_104_3' <Predicate = true> <Delay = 3.02> <Core = "DSP48">   --->   Core 61 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 8 <SV = 6> <Delay = 3.25>
+ST_8 : Operation 143 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([18 x i8]* @p_str69) nounwind" [nnet.cpp:341]   --->   Operation 143 'specloopname' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 144 [1/1] (3.25ns)   --->   "store i24 %tmp_104_2, i24* %output_V_addr_13, align 4" [nnet.cpp:342]   --->   Operation 144 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 24> <Depth = 120> <RAM>
+ST_8 : Operation 145 [1/1] (3.25ns)   --->   "store i24 %tmp_104_3, i24* %output_V_addr_14, align 4" [nnet.cpp:342]   --->   Operation 145 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 24> <Depth = 120> <RAM>
+ST_8 : Operation 146 [1/1] (0.00ns)   --->   "br label %3" [nnet.cpp:341]   --->   Operation 146 'br' <Predicate = true> <Delay = 0.00>
+
+State 9 <SV = 3> <Delay = 3.25>
+ST_9 : Operation 147 [1/1] (0.00ns)   --->   "%i2 = phi i7 [ %i_7, %_ZN6ap_intILi8EEC1ILi8ELi8EL9ap_q_mode3EL9ap_o_mode0ELi0EEERK8ap_fixedIXT_EXT0_EXT1_EXT2_EXT3_EE.exit_ifconv ], [ 0, %.preheader.preheader ]"   --->   Operation 147 'phi' 'i2' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 148 [1/1] (1.48ns)   --->   "%exitcond = icmp eq i7 %i2, -8" [nnet.cpp:345]   --->   Operation 148 'icmp' 'exitcond' <Predicate = true> <Delay = 1.48> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.42> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 149 [1/1] (0.00ns)   --->   "%empty_524 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 120, i64 120, i64 120)"   --->   Operation 149 'speclooptripcount' 'empty_524' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 150 [1/1] (1.87ns)   --->   "%i_7 = add i7 %i2, 1" [nnet.cpp:345]   --->   Operation 150 'add' 'i_7' <Predicate = true> <Delay = 1.87> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 151 [1/1] (0.00ns)   --->   "br i1 %exitcond, label %6, label %_ZN6ap_intILi8EEC1ILi8ELi8EL9ap_q_mode3EL9ap_o_mode0ELi0EEERK8ap_fixedIXT_EXT0_EXT1_EXT2_EXT3_EE.exit_ifconv" [nnet.cpp:345]   --->   Operation 151 'br' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 152 [1/1] (0.00ns)   --->   "%tmp_5 = zext i7 %i2 to i64" [nnet.cpp:346]   --->   Operation 152 'zext' 'tmp_5' <Predicate = (!exitcond)> <Delay = 0.00>
+ST_9 : Operation 153 [1/1] (0.00ns)   --->   "%output_V_addr_8 = getelementptr [120 x i24]* %output_V, i64 0, i64 %tmp_5" [nnet.cpp:346]   --->   Operation 153 'getelementptr' 'output_V_addr_8' <Predicate = (!exitcond)> <Delay = 0.00>
+ST_9 : Operation 154 [2/2] (3.25ns)   --->   "%f_op_V = load i24* %output_V_addr_8, align 4" [nnet.cpp:346]   --->   Operation 154 'load' 'f_op_V' <Predicate = (!exitcond)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 24> <Depth = 120> <RAM>
+ST_9 : Operation 155 [1/1] (0.00ns)   --->   "%fc_layer1_bias_V_add = getelementptr [120 x i10]* @fc_layer1_bias_V, i64 0, i64 %tmp_5" [nnet.cpp:346]   --->   Operation 155 'getelementptr' 'fc_layer1_bias_V_add' <Predicate = (!exitcond)> <Delay = 0.00>
+ST_9 : Operation 156 [2/2] (3.25ns)   --->   "%f_op_V_3 = load i10* %fc_layer1_bias_V_add, align 2" [nnet.cpp:346]   --->   Operation 156 'load' 'f_op_V_3' <Predicate = (!exitcond)> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 48 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 10> <Depth = 120> <ROM>
+ST_9 : Operation 157 [1/1] (0.00ns)   --->   "ret void" [nnet.cpp:347]   --->   Operation 157 'ret' <Predicate = (exitcond)> <Delay = 0.00>
+
+State 10 <SV = 4> <Delay = 9.79>
+ST_10 : Operation 158 [1/2] (3.25ns)   --->   "%f_op_V = load i24* %output_V_addr_8, align 4" [nnet.cpp:346]   --->   Operation 158 'load' 'f_op_V' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 24> <Depth = 120> <RAM>
+ST_10 : Operation 159 [1/1] (0.00ns)   --->   "%OP1_V_cast = sext i24 %f_op_V to i44" [nnet.cpp:346]   --->   Operation 159 'sext' 'OP1_V_cast' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 160 [1/1] (6.54ns)   --->   "%p_Val2_s = mul i44 530077, %OP1_V_cast" [nnet.cpp:346]   --->   Operation 160 'mul' 'p_Val2_s' <Predicate = true> <Delay = 6.54> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 6.54> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 161 [1/2] (3.25ns)   --->   "%f_op_V_3 = load i10* %fc_layer1_bias_V_add, align 2" [nnet.cpp:346]   --->   Operation 161 'load' 'f_op_V_3' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 48 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 10> <Depth = 120> <ROM>
+
+State 11 <SV = 5> <Delay = 13.9>
+ST_11 : Operation 162 [1/1] (0.00ns)   --->   "%OP1_V_3_cast_cast = sext i10 %f_op_V_3 to i31" [nnet.cpp:346]   --->   Operation 162 'sext' 'OP1_V_3_cast_cast' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 163 [1/1] (3.36ns)   --->   "%p_Val2_2 = mul i31 530080, %OP1_V_3_cast_cast" [nnet.cpp:346]   --->   Operation 163 'mul' 'p_Val2_2' <Predicate = true> <Delay = 3.36> <Core = "DSP48">   --->   Core 61 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 164 [1/1] (0.00ns)   --->   "%tmp_20_cast = sext i31 %p_Val2_2 to i44" [nnet.cpp:346]   --->   Operation 164 'sext' 'tmp_20_cast' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 165 [1/1] (3.02ns)   --->   "%p_Val2_12 = add i44 %tmp_20_cast, %p_Val2_s" [nnet.cpp:346]   --->   Operation 165 'add' 'p_Val2_12' <Predicate = true> <Delay = 3.02> <Core = "DSP48">   --->   Core 61 'DSP48' <Latency = 0> <II = 1> <Delay = 6.38> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_11 : Operation 166 [1/1] (0.00ns) (grouped into LUT with out node p_Val2_13)   --->   "%tmp_57 = call i1 @_ssdm_op_BitSelect.i1.i44.i32(i44 %p_Val2_12, i32 43)" [nnet.cpp:346]   --->   Operation 166 'bitselect' 'tmp_57' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 167 [1/1] (0.00ns) (grouped into LUT with out node p_Val2_13)   --->   "%tmp_13 = call i16 @_ssdm_op_PartSelect.i16.i44.i32.i32(i44 %p_Val2_12, i32 28, i32 43)" [nnet.cpp:346]   --->   Operation 167 'partselect' 'tmp_13' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 168 [1/1] (0.00ns) (grouped into LUT with out node p_Val2_13)   --->   "%p_Val2_15_cast = sext i16 %tmp_13 to i17" [nnet.cpp:346]   --->   Operation 168 'sext' 'p_Val2_15_cast' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 169 [1/1] (0.00ns) (grouped into LUT with out node p_Val2_13)   --->   "%qbit = call i1 @_ssdm_op_BitSelect.i1.i44.i32(i44 %p_Val2_12, i32 27)" [nnet.cpp:346]   --->   Operation 169 'bitselect' 'qbit' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 170 [1/1] (0.00ns)   --->   "%tmp_59 = trunc i44 %p_Val2_12 to i27" [nnet.cpp:346]   --->   Operation 170 'trunc' 'tmp_59' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 171 [1/1] (2.45ns)   --->   "%r = icmp ne i27 %tmp_59, 0" [nnet.cpp:346]   --->   Operation 171 'icmp' 'r' <Predicate = true> <Delay = 2.45> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.42> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 172 [1/1] (0.00ns) (grouped into LUT with out node p_Val2_13)   --->   "%not_s_i_i3 = xor i1 %tmp_57, true" [nnet.cpp:346]   --->   Operation 172 'xor' 'not_s_i_i3' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 173 [1/1] (0.00ns) (grouped into LUT with out node p_Val2_13)   --->   "%r_i_i3 = or i1 %r, %not_s_i_i3" [nnet.cpp:346]   --->   Operation 173 'or' 'r_i_i3' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 174 [1/1] (0.00ns) (grouped into LUT with out node p_Val2_13)   --->   "%qb_assign_3 = and i1 %r_i_i3, %qbit" [nnet.cpp:346]   --->   Operation 174 'and' 'qb_assign_3' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 175 [1/1] (0.00ns) (grouped into LUT with out node p_Val2_13)   --->   "%tmp_16_cast = zext i1 %qb_assign_3 to i17" [nnet.cpp:346]   --->   Operation 175 'zext' 'tmp_16_cast' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 176 [1/1] (2.07ns) (out node of the LUT)   --->   "%p_Val2_13 = add i17 %tmp_16_cast, %p_Val2_15_cast" [nnet.cpp:346]   --->   Operation 176 'add' 'p_Val2_13' <Predicate = true> <Delay = 2.07> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 177 [1/1] (0.00ns)   --->   "%tmp_60 = call i1 @_ssdm_op_BitSelect.i1.i17.i32(i17 %p_Val2_13, i32 16)" [./headers/activations.h:58->nnet.cpp:346]   --->   Operation 177 'bitselect' 'tmp_60' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 178 [1/1] (0.78ns)   --->   "%p_a_V_i = select i1 %tmp_60, i17 0, i17 %p_Val2_13" [./headers/activations.h:58->nnet.cpp:346]   --->   Operation 178 'select' 'p_a_V_i' <Predicate = true> <Delay = 0.78> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 1.24> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_11 : Operation 179 [1/1] (0.00ns)   --->   "%p_a_V_i_cast1 = sext i17 %p_a_V_i to i23" [./headers/activations.h:58->nnet.cpp:346]   --->   Operation 179 'sext' 'p_a_V_i_cast1' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 180 [1/1] (0.00ns)   --->   "%p_a_V_i_cast = zext i23 %p_a_V_i_cast1 to i24" [./headers/activations.h:58->nnet.cpp:346]   --->   Operation 180 'zext' 'p_a_V_i_cast' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 181 [1/1] (0.00ns)   --->   "%tmp_61 = trunc i17 %p_a_V_i to i8" [./headers/activations.h:58->nnet.cpp:346]   --->   Operation 181 'trunc' 'tmp_61' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 182 [1/1] (2.28ns)   --->   "%r_V_7 = add i24 -2, %p_a_V_i_cast" [nnet.cpp:346]   --->   Operation 182 'add' 'r_V_7' <Predicate = true> <Delay = 2.28> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 183 [1/1] (0.00ns)   --->   "%isneg = call i1 @_ssdm_op_BitSelect.i1.i24.i32(i24 %r_V_7, i32 23)" [nnet.cpp:346]   --->   Operation 183 'bitselect' 'isneg' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 184 [1/1] (0.00ns)   --->   "%tmp_14 = call i16 @_ssdm_op_PartSelect.i16.i24.i32.i32(i24 %r_V_7, i32 8, i32 23)" [nnet.cpp:346]   --->   Operation 184 'partselect' 'tmp_14' <Predicate = true> <Delay = 0.00>
+
+State 12 <SV = 6> <Delay = 9.53>
+ST_12 : Operation 185 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([18 x i8]* @p_str70) nounwind" [nnet.cpp:346]   --->   Operation 185 'specloopname' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 186 [1/1] (1.91ns)   --->   "%p_Val2_15 = add i8 -2, %tmp_61" [nnet.cpp:346]   --->   Operation 186 'add' 'p_Val2_15' <Predicate = true> <Delay = 1.91> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 187 [1/1] (0.00ns)   --->   "%newsignbit = call i1 @_ssdm_op_BitSelect.i1.i8.i32(i8 %p_Val2_15, i32 7)" [nnet.cpp:346]   --->   Operation 187 'bitselect' 'newsignbit' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 188 [1/1] (2.42ns)   --->   "%p_not_i_i = icmp ne i16 %tmp_14, 0" [nnet.cpp:346]   --->   Operation 188 'icmp' 'p_not_i_i' <Predicate = true> <Delay = 2.42> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.42> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 189 [1/1] (0.00ns) (grouped into LUT with out node overflow)   --->   "%brmerge_i_i = or i1 %newsignbit, %p_not_i_i" [nnet.cpp:346]   --->   Operation 189 'or' 'brmerge_i_i' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 190 [1/1] (0.00ns) (grouped into LUT with out node overflow)   --->   "%tmp_7 = xor i1 %isneg, true" [nnet.cpp:346]   --->   Operation 190 'xor' 'tmp_7' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 191 [1/1] (0.97ns) (out node of the LUT)   --->   "%overflow = and i1 %brmerge_i_i, %tmp_7" [nnet.cpp:346]   --->   Operation 191 'and' 'overflow' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 192 [1/1] (0.00ns) (grouped into LUT with out node underflow)   --->   "%newsignbit_0_not_i_i = xor i1 %newsignbit, true" [nnet.cpp:346]   --->   Operation 192 'xor' 'newsignbit_0_not_i_i' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 193 [1/1] (2.42ns)   --->   "%p_not38_i_i = icmp ne i16 %tmp_14, -1" [nnet.cpp:346]   --->   Operation 193 'icmp' 'p_not38_i_i' <Predicate = true> <Delay = 2.42> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 2.42> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 194 [1/1] (0.00ns) (grouped into LUT with out node underflow)   --->   "%brmerge39_i_i = or i1 %p_not38_i_i, %newsignbit_0_not_i_i" [nnet.cpp:346]   --->   Operation 194 'or' 'brmerge39_i_i' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 195 [1/1] (0.97ns) (out node of the LUT)   --->   "%underflow = and i1 %brmerge39_i_i, %isneg" [nnet.cpp:346]   --->   Operation 195 'and' 'underflow' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 196 [1/1] (0.00ns) (grouped into LUT with out node p_Val2_35_mux)   --->   "%brmerge_i_i_i = or i1 %underflow, %overflow" [nnet.cpp:346]   --->   Operation 196 'or' 'brmerge_i_i_i' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 197 [1/1] (0.00ns) (grouped into LUT with out node p_Val2_18)   --->   "%underflow_not = xor i1 %underflow, true" [nnet.cpp:346]   --->   Operation 197 'xor' 'underflow_not' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 198 [1/1] (0.00ns) (grouped into LUT with out node p_Val2_18)   --->   "%brmerge = or i1 %overflow, %underflow_not" [nnet.cpp:346]   --->   Operation 198 'or' 'brmerge' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 199 [1/1] (1.24ns) (out node of the LUT)   --->   "%p_Val2_35_mux = select i1 %brmerge_i_i_i, i8 127, i8 %p_Val2_15" [nnet.cpp:346]   --->   Operation 199 'select' 'p_Val2_35_mux' <Predicate = true> <Delay = 1.24> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 1.24> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_12 : Operation 200 [1/1] (0.00ns) (grouped into LUT with out node p_Val2_18)   --->   "%p_Val2_s_525 = select i1 %underflow, i8 -128, i8 %p_Val2_15" [nnet.cpp:346]   --->   Operation 200 'select' 'p_Val2_s_525' <Predicate = true> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 1.24> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_12 : Operation 201 [1/1] (1.24ns) (out node of the LUT)   --->   "%p_Val2_18 = select i1 %brmerge, i8 %p_Val2_35_mux, i8 %p_Val2_s_525" [nnet.cpp:346]   --->   Operation 201 'select' 'p_Val2_18' <Predicate = true> <Delay = 1.24> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 1.24> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_12 : Operation 202 [1/1] (3.63ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i8P(i8* %out_V_V, i8 %p_Val2_18)" [nnet.cpp:346]   --->   Operation 202 'write' <Predicate = true> <Delay = 3.63> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 3.63> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 2> <FIFO>
+ST_12 : Operation 203 [1/1] (0.00ns)   --->   "br label %.preheader" [nnet.cpp:345]   --->   Operation 203 'br' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 13ns, clock uncertainty: 1.62ns.
+
+ <State 1>: 5.55ns
+The critical path consists of the following:
+	fifo read on port 'in_V_V' (nnet.cpp:333) [10]  (3.63 ns)
+	'add' operation ('r.V', nnet.cpp:334) [12]  (1.92 ns)
+
+ <State 2>: 5.33ns
+The critical path consists of the following:
+	'phi' operation ('i') with incoming values : ('i', nnet.cpp:335) [16]  (0 ns)
+	'add' operation ('tmp_39', nnet.cpp:336) [27]  (2.08 ns)
+	'getelementptr' operation ('fc_layer1_weights_V_s', nnet.cpp:336) [29]  (0 ns)
+	'load' operation ('fc_layer1_weights_V_1', nnet.cpp:336) on array 'fc_layer1_weights_V' [30]  (3.25 ns)
+
+ <State 3>: 10.9ns
+The critical path consists of the following:
+	'load' operation ('fc_layer1_weights_V_1', nnet.cpp:336) on array 'fc_layer1_weights_V' [30]  (3.25 ns)
+	'mul' operation ('p_9', nnet.cpp:336) [32]  (4.35 ns)
+	'store' operation (nnet.cpp:336) of variable 'p_9_cast', nnet.cpp:336 on array 'output.V', nnet.cpp:327 [35]  (3.25 ns)
+
+ <State 4>: 5.55ns
+The critical path consists of the following:
+	fifo read on port 'in_V_V' (nnet.cpp:339) [47]  (3.63 ns)
+	'add' operation ('r.V', nnet.cpp:340) [49]  (1.92 ns)
+
+ <State 5>: 7.19ns
+The critical path consists of the following:
+	'phi' operation ('i1', nnet.cpp:341) with incoming values : ('i_10_3', nnet.cpp:341) [54]  (0 ns)
+	'or' operation ('i_10_s', nnet.cpp:341) [77]  (0 ns)
+	'add' operation ('tmp_46', nnet.cpp:342) [83]  (0 ns)
+	'add' operation ('tmp_47', nnet.cpp:342) [84]  (3.93 ns)
+	'getelementptr' operation ('fc_layer1_weights_V_4', nnet.cpp:342) [86]  (0 ns)
+	'load' operation ('fc_layer1_weights_V_5', nnet.cpp:342) on array 'fc_layer1_weights_V' [87]  (3.25 ns)
+
+ <State 6>: 9.63ns
+The critical path consists of the following:
+	'load' operation ('fc_layer1_weights_V_3', nnet.cpp:342) on array 'fc_layer1_weights_V' [69]  (3.25 ns)
+	'mul' operation ('p_s', nnet.cpp:342) [71]  (3.36 ns)
+	'add' operation ('tmp_9', nnet.cpp:342) [75]  (3.02 ns)
+
+ <State 7>: 9.63ns
+The critical path consists of the following:
+	'load' operation ('fc_layer1_weights_V_7', nnet.cpp:342) on array 'fc_layer1_weights_V' [105]  (3.25 ns)
+	'mul' operation ('p_12_2', nnet.cpp:342) [107]  (3.36 ns)
+	'add' operation ('tmp_104_2', nnet.cpp:342) [111]  (3.02 ns)
+
+ <State 8>: 3.25ns
+The critical path consists of the following:
+	'store' operation (nnet.cpp:342) of variable 'tmp_104_2', nnet.cpp:342 on array 'output.V', nnet.cpp:327 [112]  (3.25 ns)
+
+ <State 9>: 3.25ns
+The critical path consists of the following:
+	'phi' operation ('i') with incoming values : ('i', nnet.cpp:345) [140]  (0 ns)
+	'getelementptr' operation ('fc_layer1_bias_V_add', nnet.cpp:346) [152]  (0 ns)
+	'load' operation ('f_op.V', nnet.cpp:346) on array 'fc_layer1_bias_V' [153]  (3.25 ns)
+
+ <State 10>: 9.79ns
+The critical path consists of the following:
+	'load' operation ('f_op.V', nnet.cpp:346) on array 'output.V', nnet.cpp:327 [149]  (3.25 ns)
+	'mul' operation ('p_Val2_s', nnet.cpp:346) [151]  (6.54 ns)
+
+ <State 11>: 14ns
+The critical path consists of the following:
+	'mul' operation ('__Val2__', nnet.cpp:346) [155]  (3.36 ns)
+	'add' operation ('__Val2__', nnet.cpp:346) [157]  (3.02 ns)
+	'icmp' operation ('r', nnet.cpp:346) [163]  (2.46 ns)
+	'or' operation ('r_i_i3', nnet.cpp:346) [165]  (0 ns)
+	'and' operation ('qb', nnet.cpp:346) [166]  (0 ns)
+	'add' operation ('__Val2__', nnet.cpp:346) [168]  (2.08 ns)
+	'select' operation ('p_a_V_i', ./headers/activations.h:58->nnet.cpp:346) [170]  (0.781 ns)
+	'add' operation ('r.V', nnet.cpp:346) [174]  (2.28 ns)
+
+ <State 12>: 9.54ns
+The critical path consists of the following:
+	'icmp' operation ('p_not_i_i', nnet.cpp:346) [179]  (2.43 ns)
+	'or' operation ('brmerge_i_i', nnet.cpp:346) [180]  (0 ns)
+	'and' operation ('overflow', nnet.cpp:346) [182]  (0.978 ns)
+	'or' operation ('brmerge_i_i_i', nnet.cpp:346) [187]  (0 ns)
+	'select' operation ('p_Val2_35_mux', nnet.cpp:346) [190]  (1.25 ns)
+	'select' operation ('__Val2__', nnet.cpp:346) [192]  (1.25 ns)
+	fifo write on port 'out_V_V' (nnet.cpp:346) [193]  (3.63 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
